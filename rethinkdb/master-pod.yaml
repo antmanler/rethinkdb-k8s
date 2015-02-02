@@ -1,0 +1,37 @@
+apiVersion: v1beta1
+kind: Pod
+namespace: default
+id: rethinkdb-master
+labels:
+  db: rethinkdb
+  role: master
+desiredState:
+  manifest:
+    version: v1beta1
+    id: rethinkdb
+    containers:
+      - name: rethinkdb
+        image: rethinkdb:1.15.3
+        command:
+              - "rethinkdb"
+              - "--bind"
+              - "all"
+              - "--canonical-address"
+              - "rethinkdb-master:29015"
+        ports:
+          - name: admin-port
+            containerPort: 8080
+          - name: driver-port
+            containerPort: 28015
+          - name: cluster-port
+            containerPort: 29015
+        volumeMounts:
+          - name: rethinkdb-storage
+            mountPath: /data/rethinkdb_data
+    volumes:
+      - name: rethinkdb-storage
+        source:
+          hostDir:
+            path: /data/db/rethinkdb
+    restartPolicy:
+      always: {}
