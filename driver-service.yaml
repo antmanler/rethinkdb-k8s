@@ -1,6 +1,6 @@
 apiVersion: v1beta1
+namespace: rethinkdb
 kind: Service
-namespace: default
 id: rethinkdb-driver
 containerPort: driver-port
 port: 28015
