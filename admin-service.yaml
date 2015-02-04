@@ -5,7 +5,7 @@ id: rethinkdb-admin
 containerPort: admin-port
 port: 8080
 labels:
-  db: influxdb
+  db: rethinkdb
 selector:
   db: rethinkdb
   role: admin

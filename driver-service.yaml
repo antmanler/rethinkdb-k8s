@@ -5,6 +5,6 @@ id: rethinkdb-driver
 containerPort: driver-port
 port: 28015
 labels:
-  db: influxdb
+  db: rethinkdb
 selector:
   db: rethinkdb
