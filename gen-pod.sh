@@ -12,6 +12,11 @@ if [[ -z "${NAME}" ]]; then
   exit 1
 fi
 
+ADMIN=""
+if [[ ${NAME} == "admin" ]]; then
+  ADMIN="role: admin"
+fi
+
 NODE=""
 if [[ ! -z "${2-}" ]]; then
   NODE="nodeSelector: { name: ${2} }"
@@ -25,6 +30,7 @@ id: rethinkdb-${NAME}-${VERSION}
 ${NODE}
 labels:
   db: rethinkdb
+  ${ADMIN}
 desiredState:
   manifest:
     version: v1beta1
